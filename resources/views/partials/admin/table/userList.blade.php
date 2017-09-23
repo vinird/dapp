@@ -19,8 +19,14 @@
 					<td>{{ $u->name }}</td>
 					<td>{{ $u->email }}</td>
 					<td><a href="{{ url('userEdit') }}/{{ $u->id }}" class="btn btn-warning btn-xs">Editar</a>
-						<button class="btn btn-danger"onclick="lauchModalConfirm({{ $u->id }})" type="button">Eliminar</button>
 
+							
+	        			@if($u->voting === 1)
+	        				<button class="btn btn-danger"onclick="lauchModalConfirm({{ $u->id }},'¿El usuario esta Votando desea eliminarlo?','text-danger')" type="button">Eliminar</button>
+							<span class="label label-danger">Usuario votando</span>
+						@elseif ($u->voting === 0)
+							<button class="btn btn-danger"onclick="lauchModalConfirm({{ $u->id }},'¿Desea eliminar el usuario?','text')" type="button">Eliminar</button>
+						@endif					
 					<form type="hidden" id="form_delete{{ $u->id }}" action="{{ url('userDelete') }} " method="post">
         				{{ csrf_field() }}
         				<input type="hidden" name="id" value="{{ $u->id }}">
@@ -45,8 +51,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Confirmacion</h4>
       </div>
-      <div class="modal-body">
-        Confirmar eliminacion de usuario
+      <div class="modal-body text-center">
+      <p class="msj-alert-user"></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -58,10 +64,17 @@
 
 
 <script type="text/javascript">
+
+
 var idDelete;
-function lauchModalConfirm(id){
-	$('#myModal').modal('show');
+var msj="Desea eliminar usuario";
+function lauchModalConfirm(id,msj,clase){
 	idDelete=id;
+	msj=msj;
+	$(".msj-alert-user").text(msj);
+	$('.msj-alert-user').attr('class',clase);
+	$('#myModal').modal('show');
+
 }
 	
 function delUser(){
@@ -70,13 +83,20 @@ function delUser(){
 	var data= form.serialize();
 	$.post(url,data,function(result){
 	$('#myModal').modal('hide');
+	if(result.status=='1')
+		{
+			$(".tr"+idDelete).fadeOut();			
+		}//usuario votando
+		else if(result.status=='0'){
+			alert(result.msj);
+		}//error 3
 	
-		$(".tr"+idDelete).fadeOut();
 	}).fail(function(e){
 		console.log(e);
 		alert(e);
 	});	
  }
+
 
 </script>
 @endsection

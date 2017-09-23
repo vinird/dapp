@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-          $user = new User();
+        $user = new User();
         $user->name="admin";
         $user->email = "admin@admin.com";
         $user->rol = 1;
