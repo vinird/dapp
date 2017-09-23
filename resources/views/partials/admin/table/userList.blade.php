@@ -22,7 +22,7 @@
 
 							
 	        			@if($u->voting === 1)
-	        				<button class="btn btn-danger"onclick="lauchModalConfirm({{ $u->id }},'¿El usuario esta Votando desea eliminarlo?','text-danger')" type="button">Eliminar</button>
+	        				<!-- <button class="btn btn-danger"onclick="lauchModalConfirm({{ $u->id }},'¿El usuario esta Votando desea eliminarlo?','text-danger')" type="button">Eliminar</button> -->
 							<span class="label label-danger">Usuario votando</span>
 						@elseif ($u->voting === 0)
 							<button class="btn btn-danger"onclick="lauchModalConfirm({{ $u->id }},'¿Desea eliminar el usuario?','text')" type="button">Eliminar</button>
