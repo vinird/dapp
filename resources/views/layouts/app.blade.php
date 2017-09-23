@@ -17,6 +17,9 @@
         <div class="content-inner">
           <!-- Page Header-->
           @include('partials.admin.breadcrumb')
+
+          @include('partials.admin.alerts.alert')
+          
           <!-- Dashboard Counts Section-->
           @include('partials.admin.sections.features')
 
