@@ -130,11 +130,16 @@ class UserController extends Controller
     public function destroy(Request $request)
     {
         //
-        if(User::destroy($request->id))
-        {
-        return "success";            
-        }else{
-            return "error";
-        }
+
+            if(User::destroy($request->id))
+                {
+                 return response()->json([
+                    'status'=>'1',
+                    'msj'=>'Usuario eliminado',
+                    ]);            
+                }else{
+                   return response()->json([ 'status'=>'0',
+                    'msj'=>'Error al eliminar usuario',]);
+                }// fin del else error
     }
 }
