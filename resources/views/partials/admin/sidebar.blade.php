@@ -12,8 +12,8 @@
     <li class="active"> <a href="./"><i class="icon-home"></i>Home</a></li>
     <li><a href="#dashvariants" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Dropdown </a>
       <ul id="dashvariants" class="collapse list-unstyled">
-        <li><a href="#">Page</a></li>
-        <li><a href="#">Page</a></li>
+        <li><a href="newUser">Nuevo usuario</a></li>
+        <li><a href="userList">Lista de usuarios</a></li>
         <li><a href="#">Page</a></li>
         <li><a href="#">Page</a></li>
       </ul>
