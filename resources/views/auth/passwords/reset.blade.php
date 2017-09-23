@@ -23,11 +23,13 @@
         <div class="col-lg-6 bg-white">
           <div class="form d-flex align-items-center">
             <div class="content">
-              <form id="login-form" method="POST" action="{{ route('password.request') }}">
+              <form id="login-form" method="POST" role="form" action="{{ route('password.request') }}">
                 {{ csrf_field() }}
 
+                <input type="hidden" name="token" value="{{ $token }}">
+
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                  <input id="login-username" type="email" name="email" required value="{{ $email or old('email') }}" autofocus class="input-material">
+                  <input id="email" type="email" name="email" required value="{{ $email or old('email') }}" autofocus class="input-material">
                   <label for="login-username" class="label-material">Correo electrónico</label>
                     @if ($errors->has('email'))
                         <span class="help-block">
@@ -56,7 +58,7 @@
                     @endif
                 </div>
 
-                <button id="login" type="submit" href="index.html" class="btn btn-success">Reiniciar contraseña</button>
+                <button id="login" type="submit" class="btn btn-success">Reiniciar contraseña</button>
                 <!-- This should be submit button but I replaced it with <a> for demo purposes-->
               </form>
             </div>
