@@ -9,16 +9,16 @@
   </div>
   <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
   <ul class="list-unstyled">
-    <li class="active"> <a href="./"><i class="icon-home"></i>Home</a></li>
-    <li><a href="#dashvariants" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Dropdown </a>
+    <li class="active"> <a href="/home"><i class="icon-home"></i>Inicio</a></li>
+    <li><a href="#dashvariants" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Usuarios </a>
       <ul id="dashvariants" class="collapse list-unstyled">
-        <li><a href="newUser">Nuevo usuario</a></li>
-        <li><a href="userList">Lista de usuarios</a></li>
-        <li><a href="#">Page</a></li>
-        <li><a href="#">Page</a></li>
+        <li><a href="{{ url('newUser') }}">Nuevo usuario</a></li>
+        <li><a href="{{ url('userList') }}">Lista de usuarios</a></li>
+    <!--     <li><a href="#">Page</a></li>
+        <li><a href="#">Page</a></li> -->
       </ul>
     </li>
-    <li> <a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
+  <!--   <li> <a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
     <li> <a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
     <li> <a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
     <li> <a href="login.html"> <i class="icon-interface-windows"></i>Login Page</a></li>
@@ -27,6 +27,6 @@
     <li> <a href="#"> <i class="icon-flask"></i>Demo </a></li>
     <li> <a href="#"> <i class="icon-screen"></i>Demo </a></li>
     <li> <a href="#"> <i class="icon-mail"></i>Demo </a></li>
-    <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>
+    <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li> -->
   </ul>
 </nav>

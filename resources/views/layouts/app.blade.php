@@ -21,7 +21,7 @@
           @include('partials.admin.alerts.alert')
           
           <!-- Dashboard Counts Section-->
-          @include('partials.admin.sections.features')
+          <!-- include('partials.admin.sections.features') -->
 
           <!--  -->
           <!--  -->
@@ -32,6 +32,12 @@
           <!--  -->
           <!--  -->
 
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
           <br>
           <br>
           <br>
