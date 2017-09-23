@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->tinyInteger('rol')->default(0);
             $table->tinyInteger('enable')->default(0);
+            $table->tinyInteger('voting')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

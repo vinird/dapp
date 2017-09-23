@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        flash('Bienvenido al sistema!')->important();
+        // flash('Bienvenido al sistema!')->important();
         return view('home');
     }
 }

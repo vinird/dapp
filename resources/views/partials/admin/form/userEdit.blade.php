@@ -14,7 +14,7 @@
 
   <div class="form-group">
     <label for="email">Email address</label>
-    <input type="email" class="form-control" name="email" value="{{ $user->email }}">
+    <input type="email" class="form-control" name="email" value="{{ $user->email }}" disabled=""> 
   </div>
   
   
