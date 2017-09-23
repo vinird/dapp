@@ -52,8 +52,9 @@ class UserController extends Controller
 
          $this->validate($request,[
             'name'=>'required',
-            'email'=>'required:unique:email',
-            'passworg'=>'required',
+            'email'=>'email',
+            'email' => 'unique:users,email',
+            'password'=>'required',
             ]);
 
 
@@ -62,7 +63,9 @@ class UserController extends Controller
         $user->email=$request->email;
         $user->password = Hash::make($request->email);
         $user->save();
-        return redirect('/home');
+        flash('Usuario agregado')->important();
+
+        return redirect('userList');
     }
 
     /**
@@ -107,12 +110,15 @@ class UserController extends Controller
     public function update(Request $request)
     {
         //
+        $this->validate($request,[
+            'name'=>'required',
+            ]);
 
         $user=User::find($request->id);
         $user->name=$request->name;
-        $user->email=$request->email;
         $user->save();
-        return redirect('/home');
+        flash('Usuario actualizado')->important();
+        return back();
     }
 
     /**
@@ -124,11 +130,16 @@ class UserController extends Controller
     public function destroy(Request $request)
     {
         //
-        if(User::destroy($request->id))
-        {
-        return "success";            
-        }else{
-            return "error";
-        }
+
+            if(User::destroy($request->id))
+                {
+                 return response()->json([
+                    'status'=>'1',
+                    'msj'=>'Usuario eliminado',
+                    ]);            
+                }else{
+                   return response()->json([ 'status'=>'0',
+                    'msj'=>'Error al eliminar usuario',]);
+                }// fin del else error
     }
 }
