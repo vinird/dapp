@@ -67,7 +67,8 @@
               </form>
                 <a href="{{ route('password.request') }}" class="forgot-pass">¿Olvidó la contraseña?</a>
                 <br>
-                <small>¿No tiene cuenta? </small><a href="{{ route('register') }}" class="signup">Registrarse</a>
+                <!-- <small>¿No tiene cuenta? </small><a href="{{ route('register') }}" class="signup">Registrarse</a> -->
+                
             </div>
           </div>
         </div>
