@@ -124,11 +124,27 @@ class UserController extends Controller
     public function destroy(Request $request)
     {
         //
-        if(User::destroy($request->id))
-        {
-        return "success";            
+        $user= User::find($request->id);
+        if($user->voting==1){
+
+            if($request->ajax()){
+                return response()->json([
+                    'status'=>1,
+                    'msj'=>'Usuario votando',
+                    ]);
+            }//
+                
         }else{
-            return "error";
-        }
+            if(User::destroy($request->id))
+                {
+                 return response()->json([
+                    'status'=>0,
+                    'msj'=>'Usuario eliminado',
+                    ]);            
+                }else{
+                    'status'=>503,
+                    'msj'=>'Error al eliminar usuario',
+                }// fin del else error
+        }// fin del else
     }
 }

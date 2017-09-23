@@ -70,7 +70,7 @@ function delUser(){
 	var data= form.serialize();
 	$.post(url,data,function(result){
 	$('#myModal').modal('hide');
-
+	
 		$(".tr"+idDelete).fadeOut();
 	}).fail(function(e){
 		console.log(e);
