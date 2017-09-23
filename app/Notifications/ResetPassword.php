@@ -43,7 +43,7 @@ class ResetPassword extends ResetPasswordNotification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Recuperación de contraseña - ' . config('app.name'))
+            ->subject('Recuperación de contraseña')
             ->line('Ha recibido este correo porque se solicitó una recuperación de contraseña para su cuenta.')
             ->action('Recuperar contraseña', url(config('app.url').route('password.reset', $this->token, false)))
             ->line('Si no ha solicitado una recuperación de contraseña, no se requiere ninguna acción.');

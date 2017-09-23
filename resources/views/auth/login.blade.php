@@ -23,20 +23,33 @@
         <div class="col-lg-6 bg-white">
           <div class="form d-flex align-items-center">
             <div class="content">
+              @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+              @endif
               <form id="login-form" class="form-horizontal" method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                   <input id="email" type="email" class="input-material" name="email" value="{{ old('email') }}" required autofocus>
                   <label for="email" class="label-material">Correo electrónico</label>
                   @if ($errors->has('email'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
                   @endif
                 </div>
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                   <input id="password" type="password" class="input-material" name="password" required>
                   <label for="password" class="label-material">Contraseña</label>
+                </div>
+                {!! captcha_img() !!}
+                <br/><br/>
+                <div class="form-group{{ $errors->has('captcha') ? ' has-error' : '' }}">
+                  <input id="captcha" type="text" class="input-material" name="captcha" required>
+                  <label for="captcha" class="label-material">Captcha</label>
                 </div>
 
                 <button id="login" type="submit" class="btn btn-primary">Ingresar</button>

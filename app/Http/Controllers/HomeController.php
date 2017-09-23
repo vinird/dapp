@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 // Custom use
-use Alert;
 
 class HomeController extends Controller
 {
