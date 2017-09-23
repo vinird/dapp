@@ -179,6 +179,7 @@ return [
 
         // Custom provider
         Laracasts\Flash\FlashServiceProvider::class,
+        Mews\Captcha\CaptchaServiceProvider::class,
 
     ],
 
@@ -230,6 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         // Custom Aliases
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ],
 
