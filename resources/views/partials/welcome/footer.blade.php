@@ -9,7 +9,7 @@
                             <a class="" href="{{ url('/home') }}">INICIO</a>
                     @else
                             <a class="" href="{{ route('login') }}">INGRESAR</a>
-                            <a class="" href="{{ route('register') }}">REGISTRARSE</a>
+                            <!-- <a class="" href="{{ route('register') }}">REGISTRARSE</a> -->
                     @endauth
                 @endif
                 <p>(c) 2017 <!-- <a  href="https://mobirise.com" style="color:#333;text-decoration:underline;"> Mobirise</a> --></p>

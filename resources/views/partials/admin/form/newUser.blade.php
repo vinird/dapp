@@ -11,12 +11,12 @@
   </div>
 
   <div class="form-group">
-    <label for="email">Email address</label>
+    <label for="email">Correo electrónico</label>
     <input type="email" class="form-control" name="email" placeholder="Email">
   </div>
 
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
+    <label for="exampleInputPassword1">Contraseña</label>
     <input type="password" class="form-control" name="password" placeholder="Contraseña">
   </div>
   
