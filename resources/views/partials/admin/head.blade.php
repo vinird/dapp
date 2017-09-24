@@ -35,3 +35,5 @@
 
 <!-- Styles -->
 <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+
+<link href="{{ asset('css/libs/datepicker.min.css') }}" rel="stylesheet">
