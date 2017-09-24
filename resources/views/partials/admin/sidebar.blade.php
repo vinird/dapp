@@ -24,7 +24,7 @@
     <li><a href="#events" aria-expanded="false" data-toggle="collapse"> <i class="icon-padnote"></i>Eventos </a>
       <ul id="events" class="collapse list-unstyled">
         <li><a href="{{ url('newEvent') }}">Crear eventos</a></li>
-        <li><a href="{{ url('userList') }}">Ver eventos</a></li>
+        <li><a href="{{ url('listEvent') }}">Ver eventos</a></li>
     <!--     <li><a href="#">Page</a></li>
         <li><a href="#">Page</a></li> -->
       </ul>

@@ -37,8 +37,9 @@ App = {
 			var _contract = App.web3.eth.contract(data.abi);
 			console.log(_contract)
 			console.log(App.web3.eth.coinbase)
+			
 
-			var contract = _contract.new({from: "0x584a104e03db1199be9d11c579d56c73bc0267af", gas: 1900000, data: data.unlinked_binary},(err, res) => {
+			var contract = _contract.new({from: "0x1e80fcff0b8ce33c53755766e0483fb901eaf3d5", gas: 4600000, data: data.unlinked_binary},(err, res) => {
 			    if (err) {
 			        console.log(err);
 			        return;
@@ -54,13 +55,16 @@ App = {
 			    }
 			});
 
+			///////////////////////////////////////////////////////////////////////
 			function testContract(contr, data) {
 				// console.log(contr.getWord.call());
-				contr.addVoters.sendTransaction(["0xde1f011421c790a3f0fbd74a378f424ef68ba828"], {from: "0x584a104e03db1199be9d11c579d56c73bc0267af"})
+				// contr.setContractTime.sendTransaction("1507252163991", "1508252163991", {from: "0x1e80fcff0b8ce33c53755766e0483fb901eaf3d5"})
+				// contr.deploy({data: data.unlinked_binary, arguments: [10, 1, ["perro","gato"]]})
+				// console.log(contr.getProgress.call())
+				// console.log(contr.candidateList.call());
 
 				// console.log(App.web3.eth.accounts.create());
 
-				console.log(window.Accounts)
 
 				// contr.setWord.sendTransaction("hola!!!!!", {from: "0x584a104e03db1199be9d11c579d56c73bc0267af"});
 

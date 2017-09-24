@@ -31,6 +31,12 @@ Route::post('/userDelete', 'UserController@destroy');
 //rutas de eventos
 Route::get('/newEvent', 'EventsController@index');
 Route::post('/newEvent', 'EventsController@store');
+Route::get('/listEvent', 'EventsController@list');
+
+Route::post('/asignarCorreos', 'EventsController@asignarCorreos');
+Route::get('/notificarCorreos/{id}', 'EventsController@notificarCorreos');
+
+Route::get('/addMailsToEvents/{id}', 'EventsController@addMailsToEvents');
 
 
 // Route::resource('/users','UserController');

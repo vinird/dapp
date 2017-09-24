@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('rol')->default(0);
             $table->tinyInteger('enable')->default(0);
             $table->tinyInteger('voting')->default(0);
+            $table->integer('evento_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

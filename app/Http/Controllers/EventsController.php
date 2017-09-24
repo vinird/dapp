@@ -9,6 +9,9 @@ use App\Referendum;
 use App\Multiple;
 use App\DetalleMultiple;
 use Carbon\Carbon;
+use App\User;
+use Illuminate\Support\Facades\Mail;
+use \App\Mail\NotificarVotantes;
 
 class EventsController extends Controller
 {
@@ -163,5 +166,77 @@ class EventsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function list()
+    {
+        return view('partials.admin.table.eventList')->with(['events' => Evento::all()]);
+    }
+
+    public function addMailsToEvents($idEvent) 
+    {
+        $event = Evento::find($idEvent);
+        return view('partials.admin.events.mails')->with(['event' => $event]);
+    }
+
+    public function asignarCorreos(Request $request) 
+    {
+        $mails = [];
+        if ($file = $request->file('_file') != null) {
+            try {
+                $file = $request->file('_file');
+                $formato = \File::extension($file->getClientOriginalName());
+                $content = \File::get($file);
+
+                $contentArray = explode("\n", $content);
+
+                $mailList = [];
+
+                foreach($contentArray as $line) {
+                    if ($line != "") {
+                        array_push($mailList, trim($line));
+                    }
+                }
+                $mails = $mailList;
+
+            } catch (Illuminate\Contracts\Filesystem\FileNotFoundException $exception) {
+                
+            }
+        } else { // Si el archivo es vacio
+            $mails = $request->correo;
+        }
+
+        foreach ($mails as $key) {
+            $result = User::where('email', '=', $key)->get();
+            if (count($result) > 0) {
+                flash('El correo '.$key.' ya existe en la base de datos')->error()->important();
+                return back();
+            }
+        }
+        foreach ($mails as $key) {
+            $user = new User();
+            $user->name = $key;
+            $user->email = $key;
+            $user->password = "xxxxxxxxxxx";
+            $user->rol = 2;
+            $user->evento_id = $request->evento_id;
+            $user->save();
+        }
+        $evento = Evento::find($request->evento_id);
+        $evento->correosAsignados = 1;
+        $evento->save();
+        flash('Lista de correos agregada al evento')->important();
+        return redirect('/listEvent');
+    }
+
+    public function notificarCorreos($idEvento) 
+    {
+        $users = User::where('evento_id', '=', $idEvento)->get();
+        foreach ($users as $user) {
+            Mail::to($user->email)->send(new NotificarVotantes($user));
+            # code...
+        }
+        flash('Notificaciones enviadas al correo de la lista de votantes.')->important();
+        return back();
     }
 }
