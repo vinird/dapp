@@ -18,11 +18,25 @@
       @foreach($events as $e)
         <tr>
           <th>{{ $e->nombreEvento }}</th>
-          <th>{{ $e->fechaInicio }}</th>
-          <th>{{ $e->fechaFinal }}</th>
-          <th>{{ $e->tipoVoto }}</th>
-          <th>{{ $e->avance }}</th>
-          <th>  
+          <th>{{ Carbon\Carbon::parse(date('Y-m-d H:i:s', $e->fechaInicio))->format('j/m/Y h:i A') }}</th>
+          <th>{{ Carbon\Carbon::parse(date('Y-m-d H:i:s', $e->fechaFinal))->format('j/m/Y h:i A') }}</th>
+          <th>
+            @switch($e->tipoVoto)
+                @case(0)
+                    Papeleta
+                    @break
+
+                @case(1)
+                    Referendum
+                    @break
+
+                @case(2)
+                    Opción multiple
+                    @break
+            @endswitch
+          </th>
+          <th>{{ $e->avance?"Sí":"No" }}</th>
+          <th>
             @if($e->correosAsignados == 1)
               <span>Ya se asignaron los correos</span>
               <a href="{{ url('notificarCorreos/'.$e->id) }}" class="btn btn-success" style="color: #fff;">Notificar a los participantes</a>
