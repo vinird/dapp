@@ -1,11 +1,10 @@
 $( document ).ready(function() {
-	$('#dpFechaInicio').datepicker({
-  		language: 'es-ES',
-  		format: 'dd-mm-yyyy'
+	jQuery.datetimepicker.setLocale('es');
+	$('#dpFechaInicio').datetimepicker({
+		 format:'d-m-Y H:i'
 	});
-    $('#dpFechaFinal').datepicker({
-  		language: 'es-ES',
-  		format: 'dd-mm-yyyy'
+    $('#dpFechaFinal').datetimepicker({
+		 format:'d-m-Y H:i'
 	});
 });
 
@@ -41,21 +40,27 @@ $( "#sOpcionVoto" ).change(function () {
 });
 
 $( "#btnAgregarNombre" ).click(function() {
-  var cantNombres = cuentaInputs(false);
-  $('#tNombresPapeleta tr:last').after('<tr><td><input name="iNombre[' + cantNombres + ']" id="iNombre' + cantNombres + '" value="' + $('#iNombrePapeleta').val() + '" class="form-control" readonly></td><td><button id="btnNombre' + cantNombres + '" type="button" class="btn btn-danger">Eliminar</button></td></tr>');
-  $("#btnNombre" + cantNombres).on('click', function() {
-	$(this).parent().parent().remove();
-	renombrarInputs(false);
-  });
+	if($('#iNombrePapeleta').val() != "") {
+	  var cantNombres = cuentaInputs(false);
+	  $('#tNombresPapeleta tr:last').after('<tr><td><input name="iNombre[' + cantNombres + ']" id="iNombre' + cantNombres + '" value="' + $('#iNombrePapeleta').val() + '" class="form-control" readonly></td><td><button id="btnNombre' + cantNombres + '" type="button" class="btn btn-danger">Eliminar</button></td></tr>');
+	  $("#btnNombre" + cantNombres).on('click', function() {
+		$(this).parent().parent().remove();
+		renombrarInputs(false);
+	  });
+	  $('#iNombrePapeleta').val("");
+	}
 });
 
 $( "#btnAgregarOpciones" ).click(function() {
-  var cantOpciones = cuentaInputs(true);
-  $('#tOpcionesPregunta tr:last').after('<tr><td><input name="iOpcion[' + cantOpciones + ']" id="iOpcion' + cantOpciones + '" value="' + $('#iOpcionValor').val() + '" class="form-control" readonly></td><td><button id="btnOpcion' + cantOpciones + '" type="button" class="btn btn-danger">Eliminar</button></td></tr>');
-  $("#btnOpcion" + cantOpciones).on('click', function() {
-	$(this).parent().parent().remove();
-	renombrarInputs(true);
-  });
+	if($('#iOpcionValor').val() != "") {
+	  var cantOpciones = cuentaInputs(true);
+	  $('#tOpcionesPregunta tr:last').after('<tr><td><input name="iOpcion[' + cantOpciones + ']" id="iOpcion' + cantOpciones + '" value="' + $('#iOpcionValor').val() + '" class="form-control" readonly></td><td><button id="btnOpcion' + cantOpciones + '" type="button" class="btn btn-danger">Eliminar</button></td></tr>');
+	  $("#btnOpcion" + cantOpciones).on('click', function() {
+		$(this).parent().parent().remove();
+		renombrarInputs(true);
+	  });
+	  $('#iOpcionValor').val("");
+	}
 });
 
 function cuentaInputs(tipoInput) {
