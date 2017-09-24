@@ -25,4 +25,10 @@ Route::get('/userEdit/{id}', 'UserController@edit');
 Route::post('/userEdit', 'UserController@update');
 Route::post('/userEdit', 'UserController@update');
 Route::post('/userDelete', 'UserController@destroy');
+
+//rutas de eventos
+Route::get('/newEvent', 'EventsController@index');
+Route::post('/newEvent', 'UserController@store');
+
+
 // Route::resource('/users','UserController');
