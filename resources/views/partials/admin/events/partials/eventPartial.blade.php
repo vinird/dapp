@@ -1,6 +1,6 @@
 <div id="papeleta-form" class="card">
   <div class="card-body">
-    <input id="papeleta-activo" type="hidden" name="papeleta-activo" value="1">
+    <input id="papeleta-activo" type="hidden" name="papeleta_activo" value="1">
     <div class="form-group">
       <label class="form-control-label">Nombre</label>
       <div class="input-group">
@@ -23,7 +23,7 @@
 
 <div id="referendum-form" class="card" style="display: none;">
   <div class="card-body">
-    <input id="referendum-activo" type="hidden" name="referendum-activo" value="0">
+    <input id="referendum-activo" type="hidden" name="referendum_activo" value="0">
       <div class="form-group">
         <label class="form-control-label">Pregunta o propuesta</label>
         <div class="input-group">
@@ -35,7 +35,7 @@
 
 <div id="multiple-form" class="card" style="display: none;">
   <div class="card-body">
-    <input id="multiple-activo" type="hidden" name="multiple-activo" value="0">
+    <input id="multiple-activo" type="hidden" name="multiple_activo" value="0">
     <div class="form-group">
       <label class="form-control-label">Pregunta</label>
       <div class="input-group">

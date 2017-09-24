@@ -50,7 +50,7 @@
 
     <div class="form-group">
     <label class="form-control-label">Avances</label>
-      <select class="form-control target">
+      <select class="form-control target" name="avance">
         <option value="si" selected="selected">Si</option>
         <option value="no">No</option>
       </select>

@@ -1,9 +1,11 @@
 $( document ).ready(function() {
 	$('#dpFechaInicio').datepicker({
-  		language: 'es-ES'
+  		language: 'es-ES',
+  		format: 'dd-mm-yyyy'
 	});
     $('#dpFechaFinal').datepicker({
-  		language: 'es-ES'
+  		language: 'es-ES',
+  		format: 'dd-mm-yyyy'
 	});
 });
 
@@ -40,7 +42,7 @@ $( "#sOpcionVoto" ).change(function () {
 
 $( "#btnAgregarNombre" ).click(function() {
   var cantNombres = cuentaInputs(false);
-  $('#tNombresPapeleta tr:last').after('<tr><td><input name="iNombre' + cantNombres + '" id="iNombre' + cantNombres + '" value="' + $('#iNombrePapeleta').val() + '" class="form-control" readonly></td><td><button id="btnNombre' + cantNombres + '" type="button" class="btn btn-danger">Eliminar</button></td></tr>');
+  $('#tNombresPapeleta tr:last').after('<tr><td><input name="iNombre[' + cantNombres + ']" id="iNombre' + cantNombres + '" value="' + $('#iNombrePapeleta').val() + '" class="form-control" readonly></td><td><button id="btnNombre' + cantNombres + '" type="button" class="btn btn-danger">Eliminar</button></td></tr>');
   $("#btnNombre" + cantNombres).on('click', function() {
 	$(this).parent().parent().remove();
 	renombrarInputs(false);
@@ -49,7 +51,7 @@ $( "#btnAgregarNombre" ).click(function() {
 
 $( "#btnAgregarOpciones" ).click(function() {
   var cantOpciones = cuentaInputs(true);
-  $('#tOpcionesPregunta tr:last').after('<tr><td><input name="iOpcion' + cantOpciones + '" id="iOpcion' + cantOpciones + '" value="' + $('#iOpcionValor').val() + '" class="form-control" readonly></td><td><button id="btnOpcion' + cantOpciones + '" type="button" class="btn btn-danger">Eliminar</button></td></tr>');
+  $('#tOpcionesPregunta tr:last').after('<tr><td><input name="iOpcion[' + cantOpciones + ']" id="iOpcion' + cantOpciones + '" value="' + $('#iOpcionValor').val() + '" class="form-control" readonly></td><td><button id="btnOpcion' + cantOpciones + '" type="button" class="btn btn-danger">Eliminar</button></td></tr>');
   $("#btnOpcion" + cantOpciones).on('click', function() {
 	$(this).parent().parent().remove();
 	renombrarInputs(true);
@@ -95,10 +97,10 @@ function renombrarInputs(tipoInput) {
 	$.each(totalInputs, function(index) {
 		if (tipoInput) {
 			$(this).find( "input[id*='iOpcion']" ).attr("id", RevisarInput + "" + (index));
-			$(this).find( "input[id*='iOpcion']" ).attr("name", RevisarInput + "" + (index));
+			$(this).find( "input[id*='iOpcion']" ).attr("name", RevisarInput + "[" + (index) + "]");
 		} else {
     		$(this).find( "input[id*='iNombre']" ).attr("id", RevisarInput + "" + (index));
-    		$(this).find( "input[id*='iNombre']" ).attr("name", RevisarInput + "" + (index));
+    		$(this).find( "input[id*='iNombre']" ).attr("name", RevisarInput + "[" + (index) + "]");
     	}
 	});
 
