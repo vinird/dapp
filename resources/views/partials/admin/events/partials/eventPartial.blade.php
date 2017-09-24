@@ -77,7 +77,3 @@
     </table>
   </div>
 </div>
-
-<script src="{{ asset('js/libs/datepicker.min.js') }}"></script>
-<script src="{{ asset('js/libs/datepicker.es-ES.js') }}"></script>
-<script src="{{ asset('js/eventosVotacion.js') }}"></script>

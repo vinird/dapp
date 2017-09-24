@@ -13,7 +13,7 @@
           <div class="info d-flex align-items-center">
             <div class="content">
               <div class="logo">
-                <h1>Nombre del sistema</h1>
+                <h1>{{  config('app.name') }}</h1>
               </div>
               <p>Acceso al sistema.</p>
             </div>
@@ -68,7 +68,7 @@
                 <a href="{{ route('password.request') }}" class="forgot-pass">¿Olvidó la contraseña?</a>
                 <br>
                 <!-- <small>¿No tiene cuenta? </small><a href="{{ route('register') }}" class="signup">Registrarse</a> -->
-                
+
             </div>
           </div>
         </div>

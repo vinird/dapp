@@ -79,48 +79,57 @@ class EventsController extends Controller
         }
         $evento->user_id=\Auth::user()->id;
 
-        if($evento->save()){
-            // return back();
+        if($evento->save()) {
+            if($request->papeleta_activo==1) {
+                $this->validate($request,[
+                    'iNombre'=>'required',
+                ]);
+                foreach ($request->iNombre as $num=> $nombre) {
+                    $papeleta= new Papeleta();
+                    $papeleta->evento_id= $evento->id;
+                    $papeleta->option_id= $num;
+                    $papeleta->nombre= $nombre;
+
+                    $papeleta->save();
+                }
+            }
+
+            if($request->referendum_activo==1) {
+                $this->validate($request,[
+                    'taPregunta'=>'required',
+                ]);
+                $referendum= new Referendum();
+                $referendum->evento_id= $evento->id;
+                $referendum->pregunta= $request->taPregunta;
+
+                $referendum->save();
+            }
+
+            if($request->multiple_activo==1) {
+                $this->validate($request,[
+                    'taPreguntaMultiple'=>'required',
+                ]);
+                $multiple= new Multiple();
+                $multiple->evento_id= $evento->id;
+                $multiple->pregunta= $request->taPreguntaMultiple;
+                $multiple->min= $request->iMinimo;
+                $multiple->max= $request->iMaximo;
+                if($multiple->save()) {
+                    $this->validate($request,[
+                        'iOpcionMultiple'=>'required',
+                    ]);
+                    foreach ($request->iOpcionMultiple as $num=> $opcion) {
+                        $detalle= new DetalleMultiple();
+                        $detalle->evento_id= $multiple->evento_id;
+                        $detalle->option_id= $num;
+                        $detalle->descripcion= $opcion;
+                        $detalle->save();
+                    }
+                }
+            }
         } else {
-            // return back();
         }
-
-        if($request->papeleta_activo==1) {
-            foreach ($request->iNombre as $num=> $nombre) {
-                $papeleta= new Papeleta();
-                $papeleta->evento_id= $evento->id;
-                $papeleta->option_id= $num;
-                $papeleta->nombre= $nombre;
-
-                $papeleta->save();
-            }
-        }
-
-        if($request->referendum_activo==1) {
-            $referendum= new Referendum();
-            $referendum->evento_id= $evento->id;
-            $referendum->pregunta= $request->taPregunta;
-
-            $referendum->save();
-        }
-
-        if($request->multiple_activo==1) {
-            $multiple= new Multiple();
-            $multiple->evento_id= $evento->id;
-            $multiple->pregunta= $request->taPreguntaMultiple;
-            $multiple->min= $request->iMinimo;
-            $multiple->max= $request->iMaximo;
-            $multiple->save();
-
-            foreach ($request->iOpcion as $num=> $opcion) {
-                $detalle= new DetalleMultiple();
-                $detalle->multiple_id= $multiple->evento_id;
-                $detalle->option_id= $num;
-                $detalle->descripcion= $opcion;
-                $detalle->save();
-            }
-        }
-
+        return redirect('home');
     }// fin de storage
 
     /**

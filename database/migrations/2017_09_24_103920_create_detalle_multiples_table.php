@@ -14,10 +14,10 @@ class CreateDetalleMultiplesTable extends Migration
     public function up()
     {
         Schema::create('detalle_multiples', function (Blueprint $table) {
-            $table->integer('multiple_id')->unsigned();
+            $table->integer('evento_id')->unsigned();
             $table->integer('option_id');
             $table->string('descripcion');
-            $table->foreign('multiple_id')->references('evento_id')->on('multiples');
+            $table->foreign('evento_id')->references('id')->on('eventos');
 
             $table->timestamps();
         });

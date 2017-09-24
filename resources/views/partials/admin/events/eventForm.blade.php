@@ -12,18 +12,16 @@
    <div class="row">
      <div class="col-md-6">
        <label class="form-control-label">Fecha inicio</label>
-       <div class="input-group">
+       <div class="input-group date">
         <input id="dpFechaInicio" class="form-control" name="dpFechaInicio" value="{{ old('dpFechaInicio') }}" />
         <button type="button" class="btn btn-primary disabled"><i class="fa fa-calendar"></i></button>
-        <div id="dpFechaInicio"></div>
       </div>
      </div>
      <div class="col-md-6">
       <label class="form-control-label">Fecha final</label>
-      <div class="input-group">
+      <div class="input-group date">
         <input id="dpFechaFinal" class="form-control" name="dpFechaFinal" value="{{ old('dpFechaFinal') }}" />
         <button type="button" class="btn btn-primary disabled"><i class="fa fa-calendar"></i></button>
-        <div id="dpFechaFinal"></div>
       </div>
      </div>
    </div>
@@ -60,5 +58,8 @@
     <button type="submit" class="btn btn-default btn-success">Crear Evento</button>
   </form>
 </div>
+
+<script src="{{ asset('js/libs/jquery.datetimepicker.full.min.js') }}"></script>
+<script src="{{ asset('js/eventosVotacion.js') }}"></script>
 
 @endsection
