@@ -51,3 +51,5 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+window.Accounts = require('web3-eth-accounts');

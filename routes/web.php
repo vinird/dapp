@@ -11,6 +11,8 @@
 |
 */
 
+Route::post('/test', 'Test@file');
+
 Route::get('/', function () {
     return view('welcome');
 });

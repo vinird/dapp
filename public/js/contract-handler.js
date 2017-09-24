@@ -4,6 +4,8 @@
 App = {
 	host: "http://159.203.0.218:8545",
 
+	contracts: {},
+
 	Web3: require('web3'),
 	web3: new Web3(),
 	balance: new BigNumber('131242344353464564564574574567456'),
@@ -27,6 +29,50 @@ App = {
 		   console.log('conectado!!')
 		   App.getBlockchainInfo()
 		}
+	},
+
+	createContract: function() {
+		$.getJSON('contracts-artifacts/BallotProgramathon.json', function(data) {
+			console.log(data);
+			var _contract = App.web3.eth.contract(data.abi);
+			console.log(_contract)
+			console.log(App.web3.eth.coinbase)
+
+			var contract = _contract.new({from: "0x584a104e03db1199be9d11c579d56c73bc0267af", gas: 1900000, data: data.unlinked_binary},(err, res) => {
+			    if (err) {
+			        console.log(err);
+			        return;
+			    }
+			    // Log the tx, you can explore status with eth.getTransaction()
+			    console.log(res.transactionHash);
+			    console.log(res);
+			    // If we have an address property, the contract was deployed
+			    if (res.address) {
+			        console.log('Contract address: ' + res.address);
+			        // Let's test the deployed contract
+			        testContract(res, data);
+			    }
+			});
+
+			function testContract(contr, data) {
+				// console.log(contr.getWord.call());
+				contr.addVoters.sendTransaction(["0xde1f011421c790a3f0fbd74a378f424ef68ba828"], {from: "0x584a104e03db1199be9d11c579d56c73bc0267af"})
+
+				// console.log(App.web3.eth.accounts.create());
+
+				console.log(window.Accounts)
+
+				// contr.setWord.sendTransaction("hola!!!!!", {from: "0x584a104e03db1199be9d11c579d56c73bc0267af"});
+
+
+				// var _new = App.web3.eth.contract(data.abi);
+				// var __new = _new.at(contr.address);
+
+				// console.log(__new)
+				// __new.setWord.sendTransaction("Adios!!!!!", {from: "0x584a104e03db1199be9d11c579d56c73bc0267af"});
+				// console.log(__new.getWord.call());
+			}
+		});
 	},
 
 	//////////////////////////////////////////////////////////////////
