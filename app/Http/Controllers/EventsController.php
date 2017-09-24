@@ -78,6 +78,9 @@ class EventsController extends Controller
 
         if($evento->save()) {
             if($request->papeleta_activo==1) {
+                $this->validate($request,[
+                    'iNombre'=>'required',
+                ]);
                 foreach ($request->iNombre as $num=> $nombre) {
                     $papeleta= new Papeleta();
                     $papeleta->evento_id= $evento->id;
@@ -89,6 +92,9 @@ class EventsController extends Controller
             }
 
             if($request->referendum_activo==1) {
+                $this->validate($request,[
+                    'taPregunta'=>'required',
+                ]);
                 $referendum= new Referendum();
                 $referendum->evento_id= $evento->id;
                 $referendum->pregunta= $request->taPregunta;
@@ -97,13 +103,19 @@ class EventsController extends Controller
             }
 
             if($request->multiple_activo==1) {
+                $this->validate($request,[
+                    'taPreguntaMultiple'=>'required',
+                ]);
                 $multiple= new Multiple();
                 $multiple->evento_id= $evento->id;
                 $multiple->pregunta= $request->taPreguntaMultiple;
                 $multiple->min= $request->iMinimo;
                 $multiple->max= $request->iMaximo;
                 if($multiple->save()) {
-                    foreach ($request->iOpcion as $num=> $opcion) {
+                    $this->validate($request,[
+                        'iOpcionMultiple'=>'required',
+                    ]);
+                    foreach ($request->iOpcionMultiple as $num=> $opcion) {
                         $detalle= new DetalleMultiple();
                         $detalle->evento_id= $multiple->evento_id;
                         $detalle->option_id= $num;
