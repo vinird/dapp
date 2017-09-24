@@ -6,6 +6,8 @@ App = {
 
 	contracts: {},
 
+	contr: {},
+
 	Web3: require('web3'),
 	web3: new Web3(),
 	balance: new BigNumber('131242344353464564564574574567456'),
@@ -39,7 +41,7 @@ App = {
 			console.log(App.web3.eth.coinbase)
 			
 
-			var contract = _contract.new({from: "0x1e80fcff0b8ce33c53755766e0483fb901eaf3d5", gas: 4600000, data: data.unlinked_binary},(err, res) => {
+			var contract = _contract.new(10, 1, ["perro","gato"],{from: "0x1e80fcff0b8ce33c53755766e0483fb901eaf3d5", gas: 4600000, data: data.unlinked_binary},(err, res) => {
 			    if (err) {
 			        console.log(err);
 			        return;
@@ -61,7 +63,12 @@ App = {
 				// contr.setContractTime.sendTransaction("1507252163991", "1508252163991", {from: "0x1e80fcff0b8ce33c53755766e0483fb901eaf3d5"})
 				// contr.deploy({data: data.unlinked_binary, arguments: [10, 1, ["perro","gato"]]})
 				// console.log(contr.getProgress.call())
-				// console.log(contr.candidateList.call());
+				App.contr = contr;
+				console.log(contr.allCandidates.call());
+
+				App.contr.voteForCandidate.sendTransaction("perro", 1, {from: "0x1e80fcff0b8ce33c53755766e0483fb901eaf3d5"});
+
+
 
 				// console.log(App.web3.eth.accounts.create());
 
