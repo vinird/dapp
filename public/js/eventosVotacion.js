@@ -10,20 +10,29 @@ $( document ).ready(function() {
 $( "#sOpcionVoto" ).change(function () {
 	$( "#sOpcionVoto option:selected" ).each(function() {
       switch ($( this ).val()) { 
-		case '1': 
+		case '1':
 			$('#papeleta-form').fadeIn();
 			$('#referendum-form').fadeOut();
 			$('#multiple-form').fadeOut();
+			$('#papeleta-activo').val("1");
+			$('#referendum-activo').val("0");
+			$('#multiple-activo').val("0");
 			break;
 		case '2': 
 			$('#papeleta-form').fadeOut();
 			$('#referendum-form').fadeIn();
 			$('#multiple-form').fadeOut();
+			$('#papeleta-activo').val("0");
+			$('#referendum-activo').val("1");
+			$('#multiple-activo').val("0");
 			break;	
 		case '3': 
 			$('#papeleta-form').fadeOut();
 			$('#referendum-form').fadeOut();
 			$('#multiple-form').fadeIn();
+			$('#papeleta-activo').val("0");
+			$('#referendum-activo').val("0");
+			$('#multiple-activo').val("1");
 			break;
 	  }
 	});
@@ -65,6 +74,9 @@ function cuentaInputs(tipoInput) {
 			existeInputs = false;
 		}
 	}
+
+	cambiarMaximoOpciones(idInput);
+
 	return idInput;
 }
 
@@ -89,4 +101,14 @@ function renombrarInputs(tipoInput) {
     		$(this).find( "input[id*='iNombre']" ).attr("name", RevisarInput + "" + (index));
     	}
 	});
+
+	cambiarMaximoOpciones($("#" + RevisarTabla).find("tr").not(':first').size());
 }
+
+function cambiarMaximoOpciones(registrosActuales) {
+	/*console.log(registrosActuales);
+	if ($("#iMaximo").attr("max") <= 2 && registrosActuales < $("#iMaximo").attr("max")) {
+		$("#iMaximo").attr("max", registrosActuales);
+		$("#iMaximo").attr("value", registrosActuales);
+	}*/
+} 

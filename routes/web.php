@@ -28,7 +28,7 @@ Route::post('/userDelete', 'UserController@destroy');
 
 //rutas de eventos
 Route::get('/newEvent', 'EventsController@index');
-Route::post('/newEvent', 'UserController@store');
+Route::post('/newEvent', 'EventsController@store');
 
 
 // Route::resource('/users','UserController');
